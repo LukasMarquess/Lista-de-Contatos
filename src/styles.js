@@ -10,10 +10,15 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #020A17;
     color: #FFFFFF;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
     background-image:
-      linear-gradient(rgba(0, 230, 248, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 230, 248, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
+      linear-gradient(rgba(2, 10, 23, 0.80), rgba(2, 10, 23, 0.85)),
+      url('/protagonista.jpeg');
+
+    background-size: cover;          /* Faz a imagem cobrir a tela toda */
+    background-position: center top; /* Centraliza a imagem no topo */
+    background-attachment: fixed;    /* Deixa a imagem parada enquanto você rola a lista */
+    background-repeat: no-repeat;
   }
 `
 

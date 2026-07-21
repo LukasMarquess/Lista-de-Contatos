@@ -21,6 +21,20 @@ import {
   CardInput
 } from './styles'
 
+const maskPhone = (value) => {
+  if (!value) return ''
+
+  let v = value.replace(/\D/g, '')
+
+  if (v.length > 11) v = v.slice(0, 11)
+
+  if (v.length <= 2) return v
+  if (v.length <= 6) return `(${v.slice(0, 2)}) ${v.slice(2)}`
+  if (v.length <= 10) return `(${v.slice(0, 2)}) ${v.slice(2, 6)}-${v.slice(6)}`
+
+  return `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`
+}
+
 export default function App() {
   const dispatch = useDispatch()
   const { items: contacts, editingContact } = useSelector(
@@ -43,7 +57,10 @@ export default function App() {
   })
 
   const handleAddChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    const maskedValue = name === 'telefone' ? maskPhone(value) : value
+
+    setFormData({ ...formData, [name]: maskedValue })
   }
 
   const handleAddSubmit = (e) => {
@@ -60,7 +77,10 @@ export default function App() {
   }
 
   const handleEditChange = (e) => {
-    setEditFormData({ ...editFormData, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    const maskedValue = name === 'telefone' ? maskPhone(value) : value
+
+    setEditFormData({ ...editFormData, [name]: maskedValue })
   }
 
   const handleSaveEdit = () => {
@@ -92,7 +112,9 @@ export default function App() {
 
         {/* Formulário APENAS para Adicionar Contatos */}
         <FormContainer onSubmit={handleAddSubmit}>
-          <h3 style={{ color: '#00E6F8', marginBottom: '0.5rem' }}>Contato</h3>
+          <h3 style={{ color: '#00E6F8', marginBottom: '0.5rem' }}>
+            Novo Alvo / Contato
+          </h3>
           <Input
             name="nomeCompleto"
             placeholder="Nome Completo"
@@ -114,6 +136,7 @@ export default function App() {
             value={formData.telefone}
             onChange={handleAddChange}
             required
+            maxLength={15}
           />
 
           <ButtonContainer>
@@ -166,6 +189,7 @@ export default function App() {
                           onChange={handleEditChange}
                           placeholder="Telefone"
                           required
+                          maxLength={15}
                         />
                       </ContactInfo>
                       <ButtonContainer>
@@ -182,7 +206,6 @@ export default function App() {
                       </ButtonContainer>
                     </>
                   ) : (
-                    /* MODO DE VISUALIZAÇÃO (Texto normal) */
                     <>
                       <ContactInfo>
                         <p>
