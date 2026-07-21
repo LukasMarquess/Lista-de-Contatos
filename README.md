@@ -1,16 +1,98 @@
-# React + Vite
+# Lista de Contatos P3R
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação criada com React, Vite, Redux Toolkit e styled-components para cadastrar, buscar, editar e remover contatos em uma interface com visual temático.
 
-Currently, two official plugins are available:
+## Visão geral
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+O projeto permite:
 
-## React Compiler
+- adicionar contatos com nome, e-mail e telefone;
+- buscar contatos por nome, e-mail ou telefone;
+- editar um contato diretamente na lista;
+- remover contatos da base;
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologias
 
-## Expanding the ESLint configuration
+- React 19
+- Vite
+- Redux Toolkit
+- React Redux
+- styled-components
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Estrutura do projeto
+
+```
+src/
+	App.jsx
+	main.jsx
+	styles.js
+	components/
+		ContactForm.jsx
+		ContactForm.styles.js
+		ContactList.jsx
+		ContactList.styles.js
+		ContactCard.jsx
+		ContactCard.styles.js
+		SearchBar.jsx
+		SearchBar.styles.js
+	store/
+		contactSlice.js
+		store.js
+	utils/
+		maskPhone.js
+```
+
+## Como executar
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Inicie o ambiente de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+Gere a versão de produção:
+
+```bash
+npm run build
+```
+
+Execute a verificação de lint:
+
+```bash
+npm run lint
+```
+
+Visualize o build localmente:
+
+```bash
+npm run preview
+```
+
+## Funcionalidades
+
+### Cadastro de contatos
+
+O formulário principal cria um novo contato com um identificador gerado a partir do horário atual.
+
+### Busca
+
+A busca filtra a lista em tempo real pelos campos nome, e-mail e telefone.
+
+### Edição
+
+Ao clicar em editar, o contato entra em modo de edição diretamente no card. A confirmação salva as alterações no Redux.
+
+### Remoção
+
+O botão de remover exclui o contato da lista imediatamente.
+
+## Observações
+
+- O telefone recebe máscara automaticamente enquanto é digitado.
+- O layout e os estilos foram organizados por componente para facilitar manutenção e expansão.
