@@ -94,5 +94,4 @@ O botão de remover exclui o contato da lista imediatamente.
 
 ## Observações
 
-- O telefone recebe máscara automaticamente enquanto é digitado.
 - O layout e os estilos foram organizados por componente para facilitar manutenção e expansão.
